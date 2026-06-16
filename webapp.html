@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Wordle</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(235, 201, 207);
+            color: #323131;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container{
+            background-color: #252555;
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-container a {
+            color: #8eafd7;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        .nav-container a:hover{
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .game-container{
+            background-color: #f7d1d8;
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        h1{
+            color: #363694;
+            margin-top: 0;
+        }
+
+        .grid{
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            grid-gap: 5px;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+
+        .row{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 5px;
+        }
+
+        .tile{
+            width: 50px;
+            height: 50px;
+            border: 2px solid #ccc;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            background-color: white;
+            border-radius: 4px;
+        }
+
+        .correct{
+            background-color: #3fe842 !important;
+            color: white;
+            border-color: #3fe842;
+        }
+
+        .present{
+            background-color: yellow !important;
+            color: white;
+            border-color: yellow;
+        }
+
+        .absent{
+            background-color: grey !important;
+            color: white;
+            border-color: grey;
+        }
+
+        .controls{margin-top: 20px;}
+
+        input{
+            font-size: 18px;
+            padding: 8px;
+            width: 150px;
+            text-align: center;
+            text-transform: uppercase;
+            border: 2px solid #090942;
+            border-radius: 4px;
+        }
+        
+        button{
+            font-size: 18px;
+            padding: 8px 15px;
+            background-color: #090942;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        button:hover{background-color: pink;}
+
+        .message{
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            min-height: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-container">
+        <a href="scratch.html">Back to Scratch Page</a> |
+        <a href="professional.html">Professional Site</a>
+    </div>
+
+    <div class="game-container">
+        <h1>Sports Wordle!</h1>
+        <p>Guess the 5-letter, sports related word! You have 6 tries.</p>
+
+        <div class="grid" id="board"></div>
+
+        <div class="controls">
+            <input type="text" id="guess-input" maxlength="5" placeholder="Type word">
+            <button onclick="makeGuess()">Submit</button>
+        </div>
+
+        <div class="message" id="message-box"></div>
+    </div>
+    
+    <script>
+        
+        const words = ["PITCH", "COACH", "COURT", "SCORE", "MATCH", "FIELD", "TRACK", "GLOVE", "BOARD"];
+
+        const secretWord = words[Math.floor(Math.random() * words.length)];
+
+        const maxGuesses = 6;
+        let currentGuessCount = 0;
+
+        const board = document.getElementById('board');
+        for (let i = 0; i < maxGuesses; i++) {
+            const row = document.createElement('div');
+            row.className = 'row';
+            for (let j = 0; j < 5; j++) {
+                const tile = document.createElement('div');
+                tile.className = 'tile';
+                tile.id = `tile-${i}-${j}`;
+                row.appendChild(tile);
+            }
+            board.appendChild(row);
+        }
+
+        function makeGuess() {
+            const input = document.getElementById('guess-input');
+            const messageBox = document.getElementById('message-box');
+            let guess = input.value.toUpperCase();
+
+            if (guess.length !== 5) {
+                messageBox.style.color = "red";
+                messageBox.innerText = "Word must be exactly 5 letters long!";
+                return;
+            }
+
+            for (let i = 0; i < 5; i++) {
+                const tile = document.getElementById(`tile-${currentGuessCount}-${i}`);
+                tile.innerText = guess[i];
+
+                if (guess[i] === secretWord[i]) {
+                    tile.classList.add('correct');
+                } else if (secretWord.includes(guess[i])) {
+                    tile.classList.add('present');
+                } else {
+                    tile.classList.add('absent');
+                }
+            }
+
+            if (guess === secretWord) {
+                messageBox.style.color = "green";
+                messageBox.innerText = "Congratulations! You guess the word!";
+                input.disabled = true;
+                return;
+            }
+
+            currentGuessCount++;
+            input.value = "";
+            messageBox.innerText = "";
+
+            if (currentGuessCount === maxGuesses) {
+                messageBox.style.color = "#090942";
+                messageBox.innerText = `Game Over! The word was: ${secretWord}`;
+                input.disabled = true;
+            }
+        }
+
+        document.getElementById('guess-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                makeGuess();
+            }
+        });
+
+    </script>
+
+</body>
+</html>

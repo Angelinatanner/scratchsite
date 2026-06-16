@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sports Hub</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <!--Header and section links, including the on anchor link-->
+    <div class="header-box" id="top-of-page">
+        <a href="#">My Sports Hub</a> |
+        <a href="https://angelinatanner.github.io/myresume/">Professional Site</a> |
+        <a href="webapp.html">Web App</a>
+         <h1>My Sports Hub</h1>
+        <p>This is my scratch page, I'm going to tell you all about my favorite sports!</p>
+
+        <p><a href="#media-section" class="anchor-link">Jump to Video and Chart</a></p>
+    </div>
+
+    <div class="content-box">
+        <h1>Softball, Volleyball, & Basketball</h1>
+        <ol>
+            <li><strong>Softball</strong>
+                <ul>
+                    <li>Played on dirt infield and a grass outfield.</li>
+                    <li>Pitchers are required to throw underhand.</li>
+                    <li>A softball is larger than a baseball, and the field is also smaller than a baseball field.</li>
+                </ul>
+            </li>
+            <li><strong>Volleyball</strong>
+                <ul>
+                    <li>Played on a court divided by a net, with two teams of six players each.</li>
+                    <li>The objective is to send the ball over the net and ground it on the opponent's side of the court.</li>
+                    <li>Players can use their hands, arms, and other parts of their body to hit the ball, but they cannot catch or throw it.</li>
+                    <li>Each team has three hits to get the ball over the net.</li>
+                </ul>
+            </li>
+            <li><strong>Basketball</strong>
+                <ul>
+                    <li>Played on a court with a hoop at each end.</li>
+                    <li>The objective is to score points by shooting the ball through the opponent's hoop.</li>
+                    <li>Players can dribble the ball while moving, but they cannot run with the ball without dribbling.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>Sports Gear</h2>
+        <img src="image/softball_gear.png" alt="Softball Gear" class="sports-img"> <br>
+        <img src="image/volleyball_gear.png" alt="Volleyball Gear" class="sports-img"> <br>
+        <img src="image/basketball_gear.png" alt="Basketball Gear" class="sports-img">
+    </div>
+
+    <div id="media-section" class="media-box">
+        <h2>Interactive Media</h2>
+
+        <h3>Highlight Video for Softball</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/R9-xnPukRxM?si=MWWMXGZVpJbfPiic" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+        <h3>Sports Data Dashboard</h3>
+        <div class="tableau-placeholder">
+            <div class='tableauPlaceholder' id='viz1781480367016' style='position: relative'>
+                <noscript>
+                    <a href='#'>
+                        <img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NC&#47;NCAAVolleyballTeamStatsDashboard&#47;Dashboard1&#47;1_rss.png' style='border: none' />
+                    </a>
+                </noscript>
+                <object class='tableauViz'  style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='site_root' value='' />
+                    <param name='name' value='NCAAVolleyballTeamStatsDashboard&#47;Dashboard1' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NC&#47;NCAAVolleyballTeamStatsDashboard&#47;Dashboard1&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                </object>
+            </div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz1781480367016'); 
+                var vizElement = divElement.getElementsByTagName('object')[0]; 
+                if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1277px';} 
+                var scriptElement = document.createElement('script'); 
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
+                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>
+        </div>
+        <p><a href="#top-of-page" class="anchor-link">Back to Top</a></p>
+    </div>
+</body>
+</html>
